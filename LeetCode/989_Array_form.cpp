@@ -141,6 +141,26 @@ public:
     }
 };
 
+class Solution_Ref {
+public:
+    vector<int> addToArrayForm(vector<int>& A, int K) {
+        //
+        int len = A.size();
+        int i = 0;
+        int tmp = K;
+        //
+        vector<int> result;
+        while( i < len || tmp > 0 )
+        {
+            if(i < len) tmp += A[len - i - 1];
+            result.insert(result.begin(), tmp%10);
+            tmp /= 10;
+            i++;
+        }
+        return result;
+    }
+};
+
 int main( int argc, char** argv )
 {
     vector<int> arr;
@@ -149,7 +169,7 @@ int main( int argc, char** argv )
     arr.push_back(9);
 
     int K = 1111;
-    Solution solution;
+    Solution_Ref solution;
     vector<int> result;
     result = solution.addToArrayForm( arr, K );
     for( auto& ele:result )
