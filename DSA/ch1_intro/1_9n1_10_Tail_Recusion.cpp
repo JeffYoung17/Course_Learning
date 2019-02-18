@@ -14,6 +14,22 @@ void reverse( int* A, int lo, int hi )
         swap( A[lo++], A[hi--] );
 }
 
+// 严格来说，不属于尾递归
+int sum_iteration( int* A, int n )
+{
+    if( n == 0 ) return 0;
+    return sum_iteration( A, n - 1 ) + A[n-1];
+}
+
+int sum( int* A, int n )
+{
+    int sum = 0;
+    while( 0 < n )
+    {
+        sum += A[--n];
+    }
+    return sum;
+}
 
 int main( int argc, char** argv )
 {
@@ -23,5 +39,7 @@ int main( int argc, char** argv )
     {
         cout << a[i] << endl;
     }
+    cout << sum( a, 4 ) << endl;
+    cout << sum_iteration( a, 4 ) << endl;
     return 0;
 }
